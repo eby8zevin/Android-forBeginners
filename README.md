@@ -17,13 +17,13 @@ Requirements:
 
 Requirements:
 
-- Display images and information on the detail page.
+- Display images and information on the **detail page**.
 
 **3. About page**
 
 Requirements:
 
-- Displays a photo of yourself, name and email registered in Dicoding.
+- Displays a **photo of yourself, name** and **email** registered in **Dicoding**.
 
 ### This program uses the #Firebase database
 
