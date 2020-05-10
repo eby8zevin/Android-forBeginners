@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="3dp"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/imageViewList"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_img"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvNamaPaketList"
+            android:layout_width="235dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/imageViewList"
+            android:text="Nama"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvHargaList"
+            android:layout_width="235dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/tvNamaPaketList"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_toEndOf="@+id/imageViewList"
+            android:text="Harga"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
+
