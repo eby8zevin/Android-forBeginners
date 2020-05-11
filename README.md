@@ -1,5 +1,5 @@
 # android-dicodingfix
-Dicoding Fix - Android Studio #stayathome
+Dicoding Fix - Android Studio
 
 ## My Submission [Dicoding](https://www.dicoding.com/academies/51)
 
