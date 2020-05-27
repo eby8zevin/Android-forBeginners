@@ -24,7 +24,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".AddActivity" />
         <activity android:name=".PatunaActivity" />
         <activity
             android:name=".AboutActivity"
