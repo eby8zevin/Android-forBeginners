@@ -1,5 +1,5 @@
-# android-dicodingfix
-Dicoding Fix - Android Studio
+# Android-forBeginners
+Dicoding - Android Studio
 
 ## My Submission [Dicoding](https://www.dicoding.com/academies/51)
 
@@ -26,4 +26,3 @@ Requirements:
 - Displays a **photo of yourself, name** and **email** registered in **Dicoding**.
 
 ### This program uses the #Firebase database
-
