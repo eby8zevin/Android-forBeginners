@@ -1,6 +1,7 @@
 package com.ahmadabuhasan.dicoding;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -10,11 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -34,6 +34,10 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Detail");
+
         imgPaket = findViewById(R.id.imageView);
         txtNama = findViewById(R.id.tvNamaPaket);
         txtKet = findViewById(R.id.tvKet);
@@ -51,26 +55,31 @@ public class DetailActivity extends AppCompatActivity {
 
     private void readData() {
         firebaseFirestore.collection("Patuna").whereEqualTo("nomor", nomorId)
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                        txtNama.setText(document.getString("nama"));
-                        txtKet.setText(document.getString("ket"));
-                        fotoUrl = document.getString("foto");
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                            txtNama.setText(document.getString("nama"));
+                            txtKet.setText(document.getString("ket"));
+                            fotoUrl = document.getString("foto");
 
-                        assert fotoUrl != null;
-                        if (!fotoUrl.equals("")) {
-                            Picasso.get().load(fotoUrl).fit().into(imgPaket);
-                        } else {
-                            Picasso.get().load(R.drawable.icon_img).fit().into(imgPaket);
+                            if (fotoUrl != "") {
+                                Picasso.get().load(fotoUrl).fit().into(imgPaket);
+                            } else {
+                                Picasso.get().load(R.drawable.icon_img).fit().into(imgPaket);
+                            }
                         }
+                    } else {
+                        Toast.makeText(DetailActivity.this, "Error getting documents", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(DetailActivity.this, "Error getting documents", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+                });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
