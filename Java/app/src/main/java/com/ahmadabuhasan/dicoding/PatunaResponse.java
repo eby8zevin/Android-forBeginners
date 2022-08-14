@@ -1,13 +1,16 @@
 package com.ahmadabuhasan.dicoding;
 
-public class PatunaActivity {
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
+public class PatunaResponse {
     private String nama, nomor, harga, ket, foto;
 
-    public PatunaActivity() {
+    public PatunaResponse() {
 
     }
 
-    public PatunaActivity(String nama, String nomor, String harga, String ket, String foto) {
+    public PatunaResponse(String nama, String nomor, String harga, String ket, String foto) {
         this.nama = nama;
         this.nomor = nomor;
         this.harga = harga;

@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         progressBar = findViewById(R.id.progressBar);
 
-        firebaseFirestore = FirebaseFirestore.getInstance();
-
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         getData();
 
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
     private void getData() {
         Query query = firebaseFirestore.collection("Patuna");
 
-        FirestoreRecyclerOptions<PatunaActivity> response = new FirestoreRecyclerOptions.Builder<PatunaActivity>()
-                .setQuery(query, PatunaActivity.class).build();
+        FirestoreRecyclerOptions<PatunaResponse> response = new FirestoreRecyclerOptions.Builder<PatunaResponse>()
+                .setQuery(query, PatunaResponse.class).build();
 
-        adapter = new FirestoreRecyclerAdapter<PatunaActivity, PatunaHolder>(response) {
+        adapter = new FirestoreRecyclerAdapter<PatunaResponse, PatunaHolder>(response) {
 
             @NonNull
             @Override
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull PatunaHolder holder, int position, @NonNull final PatunaActivity model) {
+            protected void onBindViewHolder(@NonNull PatunaHolder holder, int position, @NonNull final PatunaResponse model) {
                 progressBar.setVisibility(View.GONE);
                 if (model.getFoto() != null) {
                     Picasso.get().load(model.getFoto()).fit().into(holder.imgPaket);
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Not Found: ", Objects.requireNonNull(e.getMessage()));
             }
         };
+        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         TextView txtNama, txtHarga;
         CardView cardView;
 
-        PatunaHolder(@NonNull View itemView) {
+        public PatunaHolder(@NonNull View itemView) {
             super(itemView);
             imgPaket = itemView.findViewById(R.id.imageViewList);
             txtNama = itemView.findViewById(R.id.tvNamaPaketList);
