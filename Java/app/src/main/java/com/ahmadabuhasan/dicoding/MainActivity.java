@@ -1,5 +1,6 @@
 package com.ahmadabuhasan.dicoding;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore;
     private FirestoreRecyclerAdapter adapter;
 
-    LinearLayoutManager linearLayoutManager;
     RecyclerView recyclerView;
     ProgressBar progressBar;
 
@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         recyclerView.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(new WrapContentLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -95,11 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Not Found: ", Objects.requireNonNull(e.getMessage()));
             }
         };
-        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
 
-    public class PatunaHolder extends RecyclerView.ViewHolder {
+    public static class PatunaHolder extends RecyclerView.ViewHolder {
 
         ImageView imgPaket;
         TextView txtNama, txtHarga;
@@ -144,5 +142,21 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, AboutActivity.class));
         }
         return true;
+    }
+
+    public static class WrapContentLinearLayoutManager extends LinearLayoutManager {
+
+        public WrapContentLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
+            super(context, orientation, reverseLayout);
+        }
+
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            try {
+                super.onLayoutChildren(recycler, state);
+            } catch (IndexOutOfBoundsException e) {
+                Log.e("TAG", "meet a I.O.O.B.E in RecyclerView");
+            }
+        }
     }
 }
