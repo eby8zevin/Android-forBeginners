@@ -16,7 +16,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     public void wa(View view) {
-        String number = "6281232663931";
+        String number = "6281234567890";
         String url = "https://api.whatsapp.com/send?phone=" + number;
         Intent whatsapp = new Intent(Intent.ACTION_VIEW);
         whatsapp.setData(Uri.parse(url));
