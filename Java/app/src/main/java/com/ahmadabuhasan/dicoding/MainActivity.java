@@ -95,13 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 holder.txtNama.setText(model.getNama());
                 holder.txtHarga.setText(model.getHarga());
 
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                        intent.putExtra("nomor", model.getNomor());
-                        startActivity(intent);
-                    }
+                holder.itemView.setOnClickListener(v -> {
+                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                    intent.putExtra("nomor", model.getNomor());
+                    startActivity(intent);
                 });
             }
 
@@ -110,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Not Found: ", Objects.requireNonNull(e.getMessage()));
             }
         };
-        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
 
