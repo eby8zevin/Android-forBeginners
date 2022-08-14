@@ -47,26 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+        recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         getData();
-    }
 
-    public static class PatunaHolder extends RecyclerView.ViewHolder {
-
-        ImageView imgPaket;
-        TextView txtNama, txtHarga;
-        CardView cardView;
-
-
-        PatunaHolder(@NonNull View itemView) {
-            super(itemView);
-            imgPaket = itemView.findViewById(R.id.imageViewList);
-            txtNama = itemView.findViewById(R.id.tvNamaPaketList);
-            txtHarga = itemView.findViewById(R.id.tvHargaList);
-            cardView = itemView.findViewById(R.id.cardView);
-        }
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, AddActivity.class)));
     }
 
     private void getData() {
@@ -108,6 +96,21 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         recyclerView.setAdapter(adapter);
+    }
+
+    public class PatunaHolder extends RecyclerView.ViewHolder {
+
+        ImageView imgPaket;
+        TextView txtNama, txtHarga;
+        CardView cardView;
+
+        PatunaHolder(@NonNull View itemView) {
+            super(itemView);
+            imgPaket = itemView.findViewById(R.id.imageViewList);
+            txtNama = itemView.findViewById(R.id.tvNamaPaketList);
+            txtHarga = itemView.findViewById(R.id.tvHargaList);
+            cardView = itemView.findViewById(R.id.cardView);
+        }
     }
 
     @Override
