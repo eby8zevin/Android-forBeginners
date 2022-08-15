@@ -30,7 +30,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="3dp"
             android:layout_toEndOf="@+id/imageViewList"
-            android:text="Nama"
+            android:text="@string/name"
             android:textColor="#000000"
             android:textSize="20sp" />
 
@@ -42,13 +42,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="13dp"
             android:layout_toEndOf="@+id/imageViewList"
-            android:text="Harga"
+            android:text="@string/price"
             android:textColor="#000000"
             android:textSize="17sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
-
 
 </androidx.cardview.widget.CardView>
 
