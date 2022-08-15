@@ -60,7 +60,7 @@ public class DetailActivity extends AppCompatActivity {
                             txtKet.setText(document.getString("ket"));
                             fotoUrl = document.getString("foto");
 
-                            if (fotoUrl != "") {
+                            if (!Objects.equals(fotoUrl, "")) {
                                 Picasso.get().load(fotoUrl).fit().into(imgPaket);
                             } else {
                                 Picasso.get().load(R.drawable.icon_img).fit().into(imgPaket);
