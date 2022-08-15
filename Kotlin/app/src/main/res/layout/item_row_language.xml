@@ -33,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:justificationMode="inter_word"
             android:maxLines="3"
+            tools:targetApi="o"
             tools:text="@string/detail" />
     </LinearLayout>
 
