@@ -66,26 +66,6 @@ public class AddActivity extends AppCompatActivity {
         BtnBack.setOnClickListener(v -> finish());
     }
 
-    private void saveData(String nama, String nomor, String harga, String ket, String foto) {
-
-        Map<String, Object> patunaData = new HashMap<>();
-
-        patunaData.put("nama", nama);
-        patunaData.put("nomor", nomor);
-        patunaData.put("harga", harga);
-        patunaData.put("ket", ket);
-        patunaData.put("foto", foto);
-
-        firebaseFirestore.collection("Patuna").document(nomor).set(patunaData).isSuccessful();
-    }
-
-    private void takeImg() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Choose img"), IMAGE_REQUEST);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -98,8 +78,31 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
+    private void takeImg() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Choose img"), IMAGE_REQUEST);
+    }
+
     private void uploadImg() {
-        if (filePath != null) {
+        String name = txtNama.getText().toString();
+        String number = txtNomor.getText().toString();
+        String price = txtHarga.getText().toString();
+        String desc = txtKet.getText().toString();
+        if (name.isEmpty()) {
+            txtNama.setError(getString(R.string.name));
+            txtNama.requestFocus();
+        } else if (number.isEmpty()) {
+            txtNomor.setError(getString(R.string.number));
+            txtNomor.requestFocus();
+        } else if (price.isEmpty()) {
+            txtHarga.setError(getString(R.string.price));
+            txtHarga.requestFocus();
+        } else if (desc.isEmpty()) {
+            txtKet.setError(getString(R.string.desc));
+            txtKet.requestFocus();
+        } else if (filePath != null) {
             final StorageReference ref = storageReference.child(txtNomor.getText().toString());
             UploadTask uploadTask = ref.putFile(filePath);
 
@@ -121,12 +124,27 @@ public class AddActivity extends AppCompatActivity {
 
             uploadTask.addOnProgressListener(taskSnapshot -> {
                 progressBar.setVisibility(View.VISIBLE);
-                double progres = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                progressBar.setProgress((int) progres);
+                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                progressBar.setProgress((int) progress);
             }).addOnFailureListener(e -> {
                 progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(AddActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_LONG).show();
             });
+        } else {
+            Toast.makeText(this, "Failed, Please try choose image!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void saveData(String nama, String nomor, String harga, String ket, String foto) {
+
+        Map<String, Object> patunaData = new HashMap<>();
+
+        patunaData.put("nama", nama);
+        patunaData.put("nomor", nomor);
+        patunaData.put("harga", harga);
+        patunaData.put("ket", ket);
+        patunaData.put("foto", foto);
+
+        firebaseFirestore.collection("Patuna").document(nomor).set(patunaData).isSuccessful();
     }
 }
