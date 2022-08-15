@@ -1,9 +1,5 @@
 package com.ahmadabuhasan.dicoding;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,13 +10,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -108,43 +103,29 @@ public class AddActivity extends AppCompatActivity {
             final StorageReference ref = storageReference.child(txtNomor.getText().toString());
             UploadTask uploadTask = ref.putFile(filePath);
 
-            Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    return ref.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    Uri imagePath = task.getResult();
+            Task<Uri> uriTask = uploadTask.continueWithTask(task -> ref.getDownloadUrl()).addOnCompleteListener(task -> {
+                Uri imagePath = task.getResult();
 
-                    fotoUrl = imagePath.toString();
-                    saveData(txtNama.getText().toString(),
-                            txtNomor.getText().toString(),
-                            txtHarga.getText().toString(),
-                            txtKet.getText().toString(),
-                            fotoUrl);
+                fotoUrl = imagePath.toString();
+                saveData(txtNama.getText().toString(),
+                        txtNomor.getText().toString(),
+                        txtHarga.getText().toString(),
+                        txtKet.getText().toString(),
+                        fotoUrl);
 
-                    progressBar.setProgress(0);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(AddActivity.this, "Data Saved Successfully", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+                progressBar.setProgress(0);
+                progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(AddActivity.this, "Data Saved Successfully", Toast.LENGTH_SHORT).show();
+                finish();
             });
 
-            uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    double progres = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                    progressBar.setProgress((int) progres);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(AddActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_LONG).show();
-                }
+            uploadTask.addOnProgressListener(taskSnapshot -> {
+                progressBar.setVisibility(View.VISIBLE);
+                double progres = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                progressBar.setProgress((int) progres);
+            }).addOnFailureListener(e -> {
+                progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(AddActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_LONG).show();
             });
         }
     }
