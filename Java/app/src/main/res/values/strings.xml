@@ -2,4 +2,8 @@
     <string name="app_name">Patuna</string>
     <string name="nama">Ahmad Abu Hasan</string>
     <string name="email">ahmadabuhasan@mhs.stmik-yadika.ac.id</string>
+    <string name="name">Name</string>
+    <string name="number">Number</string>
+    <string name="price">Price</string>
+    <string name="desc">Description</string>
 </resources>
