@@ -2,43 +2,87 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_detail_photo"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:contentDescription="@string/name"
-            tools:src="@tools:sample/avatars" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_detail_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/name"
+                android:scaleType="fitXY"
+                tools:src="@tools:sample/avatars" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tv_detail_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/name"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="32sp" />
 
         <TextView
             android:id="@+id/tv_detail_detail"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:justificationMode="inter_word"
-            android:text="@string/detail"
-            tools:targetApi="o" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:lineSpacingMultiplier="1"
+            android:text="@string/detail" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/skill"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_detail_skill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/skill"
+                    android:textSize="14sp" />
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btn_detail_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/link" />
     </LinearLayout>
 
 </ScrollView>
