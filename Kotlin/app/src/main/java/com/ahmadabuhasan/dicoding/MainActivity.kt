@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
                 i.putExtra("image", data.image)
                 i.putExtra("name", data.name)
                 i.putExtra("detail", data.detail)
+                i.putExtra("skill", data.skill)
+                i.putExtra("link", data.link)
                 startActivity(i)
             }
         })
