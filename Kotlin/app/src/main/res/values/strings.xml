@@ -8,4 +8,9 @@
 
     <string name="skill">Skills Needed:</string>
     <string name="link">Learn</string>
+
+    <string name="my_name">Ahmad Abu Hasan</string>
+    <string name="my_email">ahmadabuhasan@mhs.stmik-yadika.ac.id</string>
+    <string name="dicoding">dicoding.com</string>
+    <string name="account">My Dicoding</string>
 </resources>
