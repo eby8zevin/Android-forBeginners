@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/drawable/ic_selector.xml" value="0.13" />
         <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/drawable/icon_javascript.xml" value="0.164" />
         <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/drawable/icon_javasript.xml" value="0.164" />
         <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/drawable/icon_python.xml" value="0.164" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/layout/activity_detail.xml" value="0.1" />
         <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/layout/item_row_language.xml" value="0.1" />
+        <entry key="..\:/Users/NUR AIDA HASANAH/OneDrive/Documents/GitHub/Android-forBeginners/Kotlin/app/src/main/res/menu/menu_detail.xml" value="0.13470790378006872" />
       </map>
     </option>
   </component>
