@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@color/primary"
+            android:background="@drawable/bg"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -22,16 +22,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:src="@drawable/me" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="@string/my_name"
-                android:textColor="@color/white"
-                android:textSize="21sp"
-                android:textStyle="bold" />
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
@@ -45,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@string/dicoding"
+                android:text="@string/my_name"
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
