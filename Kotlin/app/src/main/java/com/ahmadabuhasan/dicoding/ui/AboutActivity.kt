@@ -2,23 +2,25 @@ package com.ahmadabuhasan.dicoding.ui
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Button
-import com.ahmadabuhasan.dicoding.R
+import androidx.appcompat.app.AppCompatActivity
+import com.ahmadabuhasan.dicoding.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityAboutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "About Me"
 
-        val btnAccount: Button = findViewById(R.id.btn_github)
-        btnAccount.setOnClickListener {
+        binding.btnToDicoding.setOnClickListener {
             val i = Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("https://www.dicoding.com/users/ahmadabuhasan")
