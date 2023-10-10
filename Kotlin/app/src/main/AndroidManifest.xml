@@ -13,10 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProgrammingLanguages"
         tools:targetApi="31">
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".DetailActivity" />
+        <activity android:name=".ui.AboutActivity" />
+        <activity android:name=".ui.DetailActivity" />
+        <activity android:name=".ui.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
