@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     Uri.parse("https://www.simplilearn.com/best-programming-languages-start-learning-today-article")
                 )
             )
-        } else if (item.itemId == R.id.about) {
+        } else if (item.itemId == R.id.about_page) {
             startActivity(Intent(this@MainActivity, AboutActivity::class.java))
         }
         return super.onOptionsItemSelected(item)

@@ -6,7 +6,7 @@
         android:title="@string/source"
         app:showAsAction="never" />
     <item
-        android:id="@+id/about"
+        android:id="@+id/about_page"
         android:title="@string/about"
         app:showAsAction="never" />
 </menu>
