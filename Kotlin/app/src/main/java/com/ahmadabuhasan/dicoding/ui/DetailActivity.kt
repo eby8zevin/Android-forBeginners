@@ -2,60 +2,57 @@ package com.ahmadabuhasan.dicoding.ui
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.ahmadabuhasan.dicoding.R
+import com.ahmadabuhasan.dicoding.databinding.ActivityDetailBinding
+import com.ahmadabuhasan.dicoding.model.Language
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 class DetailActivity : AppCompatActivity() {
 
-    private lateinit var imgPhoto: ImageView
-    private lateinit var tvName: TextView
-    private lateinit var tvDetail: TextView
-    private lateinit var tvSkill: TextView
-    private lateinit var btnLink: Button
+    private lateinit var binding: ActivityDetailBinding
+    private var dataShare: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        imgPhoto = findViewById(R.id.img_detail_photo)
-        tvName = findViewById(R.id.tv_detail_name)
-        tvDetail = findViewById(R.id.tv_detail_detail)
-        tvSkill = findViewById(R.id.tv_detail_skill)
-        btnLink = findViewById(R.id.btn_detail_link)
-
-        Glide.with(applicationContext)
-            .load(intent.getIntExtra("image", 0))
-            .apply(RequestOptions())
-            .into(imgPhoto)
-
-        val name = intent.getStringExtra("name").toString()
-        val detail = intent.getStringExtra("detail").toString()
-        val skill = intent.getStringExtra("skill").toString()
-        val link = intent.getStringExtra("link").toString()
-
-        tvName.text = name
-        tvDetail.text = detail
-        tvSkill.text = skill
-
-        btnLink.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-            startActivity(i)
+        val data = if (Build.VERSION.SDK_INT >= 33) {
+            intent.getParcelableExtra("key_data", Language::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra("key_data")
         }
 
-        supportActionBar?.title = "Detail $name"
+        if (supportActionBar != null) {
+            supportActionBar?.title = "Detail ${data?.name}"
+            supportActionBar?.setHomeButtonEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+
+        if (data != null) {
+            Glide.with(applicationContext)
+                .load(data.image)
+                .apply(RequestOptions())
+                .into(binding.imgDetailPhoto)
+
+            binding.tvDetailName.text = data.name
+            binding.tvDetailDetail.text = data.detail
+            binding.tvDetailSkill.text = data.skill
+
+            binding.btnDetailLink.setOnClickListener {
+                val i = Intent(Intent.ACTION_VIEW, Uri.parse(data.link))
+                startActivity(i)
+            }
+
+            dataShare = data.detail
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,21 +61,26 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.favorite) {
-            if (item.isChecked) {
-                item.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite)
-                Toast.makeText(this, "Like", Toast.LENGTH_SHORT).show()
-                item.isChecked = false
-            } else {
-                item.icon = ContextCompat.getDrawable(this, R.drawable.ic_unfavorite)
-                Toast.makeText(this, "UnLike", Toast.LENGTH_SHORT).show()
-                item.isChecked = true
+        when (item.itemId) {
+            R.id.action_share -> {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, dataShare)
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+
+                return true
             }
-            return true
-        } else if (item.itemId == android.R.id.home) {
-            finish()
-            return true
+
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 }
