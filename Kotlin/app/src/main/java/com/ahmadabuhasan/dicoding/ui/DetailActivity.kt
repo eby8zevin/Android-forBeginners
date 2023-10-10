@@ -1,4 +1,4 @@
-package com.ahmadabuhasan.dicoding
+package com.ahmadabuhasan.dicoding.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.ahmadabuhasan.dicoding.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 

@@ -1,4 +1,4 @@
-package com.ahmadabuhasan.dicoding
+package com.ahmadabuhasan.dicoding.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
+import com.ahmadabuhasan.dicoding.R
 
 class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,7 @@
-package com.ahmadabuhasan.dicoding
+package com.ahmadabuhasan.dicoding.data
+
+import com.ahmadabuhasan.dicoding.R
+import com.ahmadabuhasan.dicoding.model.Language
 
 object LanguagesData {
 

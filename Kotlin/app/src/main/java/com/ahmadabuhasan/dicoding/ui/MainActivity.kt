@@ -1,4 +1,4 @@
-package com.ahmadabuhasan.dicoding
+package com.ahmadabuhasan.dicoding.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ahmadabuhasan.dicoding.model.Language
+import com.ahmadabuhasan.dicoding.data.LanguagesData
+import com.ahmadabuhasan.dicoding.adapter.ListAdapter
+import com.ahmadabuhasan.dicoding.R
 
 class MainActivity : AppCompatActivity() {
 

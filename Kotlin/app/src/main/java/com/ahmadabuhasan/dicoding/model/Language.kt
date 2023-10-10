@@ -1,4 +1,4 @@
-package com.ahmadabuhasan.dicoding
+package com.ahmadabuhasan.dicoding.model
 
 data class Language(
     var name: String = "",
