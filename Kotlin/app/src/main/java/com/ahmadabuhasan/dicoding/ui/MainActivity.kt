@@ -6,50 +6,38 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.ahmadabuhasan.dicoding.model.Language
-import com.ahmadabuhasan.dicoding.data.LanguagesData
-import com.ahmadabuhasan.dicoding.adapter.ListAdapter
 import com.ahmadabuhasan.dicoding.R
+import com.ahmadabuhasan.dicoding.adapter.ListAdapter
+import com.ahmadabuhasan.dicoding.data.LanguagesData
+import com.ahmadabuhasan.dicoding.databinding.ActivityMainBinding
+import com.ahmadabuhasan.dicoding.model.Language
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var rvLanguage: RecyclerView
+    private lateinit var binding: ActivityMainBinding
     private var list: ArrayList<Language> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        rvLanguage = findViewById(R.id.rv_programmingLanguages)
-        rvLanguage.setHasFixedSize(true)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         list.addAll(LanguagesData.listData)
         showRecyclerView()
     }
 
     private fun showRecyclerView() {
+        binding.rvProgrammingLanguages.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvProgrammingLanguages.layoutManager = layoutManager
         val adapter = ListAdapter(list)
-        rvLanguage.adapter = adapter
-        rvLanguage.layoutManager = layoutManager
-        rvLanguage.addItemDecoration(
-            DividerItemDecoration(
-                baseContext,
-                layoutManager.orientation
-            )
-        )
+        binding.rvProgrammingLanguages.adapter = adapter
 
         adapter.setOnItemClickCallback(object : ListAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Language) {
                 val i = Intent(this@MainActivity, DetailActivity::class.java)
-                i.putExtra("image", data.image)
-                i.putExtra("name", data.name)
-                i.putExtra("detail", data.detail)
-                i.putExtra("skill", data.skill)
-                i.putExtra("link", data.link)
+                i.putExtra("key_data", data)
                 startActivity(i)
             }
         })
