@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BarVolume</string>
+    <string name="length">Length (p)</string>
+    <string name="width">Width (l)</string>
+    <string name="height">Height (t)</string>
+    <string name="calculate">Calculate</string>
+    <string name="result">Result</string>
+</resources>

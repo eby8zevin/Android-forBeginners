@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Cryptocurrency</string>
+    <string name="coin_name">Name Coin</string>
+    <string name="coin_detail">Detail Coin</string>
+    <string name="list">List</string>
+    <string name="grid">Grid</string>
+    <string name="with_cardview">with CardView</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+</resources>
